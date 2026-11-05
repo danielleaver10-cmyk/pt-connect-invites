@@ -35,6 +35,36 @@
     }
   </style>
 </head>
+  
+<div style="text-align:center; margin:24px 0;">
+  <button
+    id="openPtConnect"
+    style="background:#22c55e;color:white;padding:16px 24px;border:none;border-radius:12px;font-size:17px;font-weight:bold;cursor:pointer;"
+  >
+    Open PT CONNECT
+  </button>
+  <p id="inviteMessage" style="margin-top:12px;"></p>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const inviteToken = params.get('token');
+
+  document.getElementById('openPtConnect').addEventListener('click', () => {
+    if (!inviteToken) {
+      document.getElementById('inviteMessage').textContent =
+        'No invitation code was found in this link.';
+      return;
+    }
+
+    const expoUrl =
+      'exp://c-leaverd5222-bf6nl5-mw3n2yj2jf4mahmj.on.expo.app/--/?token=' +
+      encodeURIComponent(inviteToken);
+
+    window.location.href = expoUrl;
+  });
+</script>
+
 <body>
   <main class="card">
     <h1>PT CONNECT</h1>
